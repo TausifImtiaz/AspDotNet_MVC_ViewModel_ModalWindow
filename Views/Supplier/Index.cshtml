@@ -1,0 +1,92 @@
+﻿<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div id="main-div">
+    <div class="container">
+        <br />
+        <a href="@Url.Action("Create","Supplier")" id="Add" class="btn btn-primary"> Add Supplier</a>
+        <div id="div-record">
+            @Html.Partial("_SuppliersView")
+        </div>
+    </div>
+
+    <div class="modal fade" id="Add-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> New Supplier</h4>
+                </div>
+                <div class="divForAdd">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="Edit-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> Update Suppliers Information</h4>
+                </div>
+                <div class="divForUpdate">
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <div class="modal fade" id="Details-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelDetails" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Supplier Details </h4>
+                </div>
+                <div class="divForDetails">
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="Delete-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Delete Supplier Info</h4>
+                </div>
+                <div class="divForDelete">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+

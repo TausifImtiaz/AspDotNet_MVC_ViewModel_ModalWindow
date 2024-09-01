@@ -1,0 +1,240 @@
+﻿@model IEnumerable<MVC_ViewModel_ModalWindow.Models.Suppllier>
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+
+                <a href="@Url.Action("Edit","Supplier",new {id=item.SupplierID })" class="editDialog btn btn-warning btn-sm">Edit</a>
+
+                <a href="@Url.Action("Details","Supplier",new {id=item.SupplierID })" class="DetailsDialog btn btn-info btn-sm">Details</a>
+
+
+
+
+
+                <a href="@Url.Action("Delete","Supplier",new {id=item.SupplierID })" class="DeleteDialog btn btn-danger btn-sm" data-id="@item.SupplierID">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+    $(document).ready(function () {
+
+        $("#Add").click(function () {
+            $("#Add-Modal").modal("show");
+        });
+
+        $("#Add").click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $(".divForAdd").html(response);
+
+            });
+            $("#Add-Modal").modal({
+                backdrop: "static",
+            }, 'show');
+        });
+
+        //$(".editDialog").click(function (event) {
+        //    event.preventDefault();
+        //    console.log("Edit button clicked");
+
+        //    $.get(this.href, function (response) {
+        //        $(".divForUpdate").html(response);
+
+        //    });
+        //    $("#Edit-Modal").modal({
+        //        backdrop: "static",
+        //    }, 'show');
+        //});
+
+        //$(".editDialog").click(function (event) {
+        //    event.preventDefault();
+        //    console.log("Edit button clicked");
+        //    $.get(this.href, function (response) {
+        //        $(".divForUpdate").html(response);
+        //        console.log("Modal content loaded");
+        //    });
+        //    $("#Edit-Modal").modal({
+        //        backdrop: "static",
+        //    }, 'show');
+        //});
+
+        $(".editDialog").click(function (event) {
+            event.preventDefault();
+            var url = $(this).attr("href"); // Get the URL from the Edit button
+            $.get(url, function (response) {
+                $(".divForUpdate").html(response);
+                $("#Edit-Modal").modal("show"); // Show the modal after loading content
+            });
+        });
+
+        $(".DetailsDialog").click(function (event) {
+            event.preventDefault();
+            var url = $(this).attr("href"); // Get the URL from the Details button
+            $.get(url, function (response) {
+                $(".divForDetails").html(response);
+                $("#Details-Modal").modal("show"); // Show the modal after loading content
+            });
+        });
+
+
+        $(".DeleteDialog").click(function (event) {
+            event.preventDefault();
+            var url = $(this).attr("href"); // Get the URL from the Delete button
+            $.get(url, function (response) {
+                $(".divForDelete").html(response);
+                $("#Delete-Modal").modal("show"); // Show the modal after loading content
+            });
+        });
+
+
+        //$(".DetailsDialog").click(function (event) {
+        //    event.preventDefault();
+        //    $.get(this.href, function (response) {
+        //        $(".divForDetails").html(response);
+
+        //    });
+        //    $("#Details-Modal").modal({
+        //        backdrop: "static",
+        //    }, 'show');
+        //});
+
+
+
+        //$(".DeleteDialog").click(function (event) {
+        //    event.preventDefault();
+        //    $.get(this.href, function (response) {
+        //        $(".divForDelete").html(response);
+
+        //    });
+        //    $("#Delete-Modal").modal({
+        //        backdrop: "static",
+        //    }, 'show');
+        //});
+
+        //$("#Delete-Modal").modal({
+        //    backdrop: "static",
+        //}, 'show');
+        //console.log("Modal displayed");
+
+        //$(".DeleteDialog").click(function (event) {
+        //    event.preventDefault();
+        //    var url = $(this).attr("href"); // Get the URL from the Delete button
+        //    if (confirm("Are you sure you want to delete this supplier?")) {
+        //        $.post(url, function () {
+        //            // Reload the page after successful deletion or handle it accordingly
+        //            location.reload();
+        //        });
+        //    }
+        //});
+
+        //$(".DeleteDialog").click(function (event) {
+        //    event.preventDefault();
+        //    var url = $(this).attr("href"); // Get the URL from the Delete button
+        //    if (confirm("Are you sure you want to delete this supplier?")) {
+        //        $.post(url, function () {
+        //            // Reload the page after successful deletion or handle it accordingly
+        //            location.reload();
+        //        }).fail(function (xhr, status, error) {
+        //            alert("Error occurred while deleting the supplier: " + error); // Show error message if deletion fails
+        //        });
+        //    }
+        //    else {
+        //        $("#Delete-Modal").modal("hide"); // Hide the modal if deletion is canceled
+        //    }
+        //});
+
+
+
+        //$(".DeleteDialog").click(function (event) {
+        //    event.preventDefault();
+        //    var url = $(this).attr("href");
+        //    var id = $(this).data("id");
+
+        //    if (confirm("Are you sure you want to delete supplier with ID: " + id + "?")) {
+        //        $.ajax({
+        //            url: url,
+        //            type: "POST",
+        //            data: { id: id },
+        //            success: function (result) {
+        //                if (result || result.success) {
+        //                    location.reload();
+        //                } else {
+        //                    var errorMessage = result && result.message ? result.message : "An unknown error occurred.";
+        //                    alert(errorMessage);
+        //                }
+        //            },
+        //            error: function (xhr, status, error) {
+        //                alert("Error occurred while deleting the supplier: " + error);
+        //            }
+        //        });
+        //    }
+        //});
+
+
+
+
+
+
+
+
+        //console.log("Modal offset:", $("#Delete-Modal").offset());
+        //console.log("Modal position:", $("#Delete-Modal").position());
+
+
+    });
+</script>
+@*<script>
+        $(document).ready(function () {
+            $(".editDialog").click(function (event) {
+                event.preventDefault();
+                $.get(this.href, function (response) {
+                    $(".divForUpdate").html(response);
+
+                });
+                $("#Edit-Modal").modal({
+                    backdrop: "static",
+                }, 'show');
+            });
+        });
+    </script>*@
+

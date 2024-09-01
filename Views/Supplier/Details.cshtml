@@ -1,0 +1,64 @@
+﻿@model MVC_ViewModel_ModalWindow.Models.Suppllier
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Ajax.BeginForm("Details", "Supplier", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+    {
+        <div>
+            <center>  <h4>Check your Suppliers Information!</h4></center>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.SupplierName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SupplierName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+            </dl>
+        </div>
+    }
+<center>
+    <div>
+        @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-warning btn-sm" })
+    </div>
+</center>
+    </body>
+</html>

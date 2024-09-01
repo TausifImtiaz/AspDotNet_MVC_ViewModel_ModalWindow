@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Place Your Order Here.....</h2>
+<div class="container">
+    <div class="master">
+        <h3>Order</h3>
+        <table class="table table-hover table-responsive table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" id="customerName" class="form-control" />
+                    <span class="error">Customer Name is required</span>
+                </td>
+                <td>Gender</td>
+                <td>
+                    <label class="radio-label">
+                        <input type="radio" id="maleGender" name="gender" value="Male" class="radio-inline" />
+                        Male
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" id="femaleGender" name="gender" value="Female" class="radio-inline" />
+                        Female
+                    </label>
+                    <span class="error">Gender is required</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="text" id="email" class="form-control" />
+                </td>
+                <td>Phone</td>
+                <td>
+                    <input type="text" id="phone" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>Order Date</td>
+                <td>
+                    <input type="date" id="orderDate" class="form-control" />
+                    <span class="error">Valid Order date required(MM-dd-yyyy)</span>
+                </td>
+                <td>Note</td>
+                <td>
+                    <textarea id="note" rows="4" cols="50" class="form-control"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td>
+                    <input type="file" name="ImageFile" id="imageupload" class="form-control" />
+                </td>
+                <td>Address</td>
+                <td>
+                    <input type="text" name="address" id="address" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>Are You Agree?</td>
+                <td colspan="4">
+                    <input type="checkbox" id="bool" class="form-control checkbox" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="details">
+        <h2>Order Items</h2>
+        <table class="table table-responsive table-hover table-bordered">
+            <tr>
+                <td>Category</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Unit Price</td>
+                <td></td>
+            </tr>
+            <tr class="mycontainer" id="mainrow">
+                <td>
+                    <select id="productCategory" class="productCategory form-control" onchange="LoadProducts(this)">
+                        <option>Select</option>
+                    </select>
+                    <span class="error">Select Category</span>
+                </td>
+                <td>
+                    <select id="product" class="product form-control">
+                        <option>Select</option>
+                    </select>
+                    <span class="error">Select Product</span>
+                </td>
+                <td>
+                    <input type="text" id="quantity" class="quantity form-control" />
+                    <span class="error">Please Provide Valid Quantity</span>
+                </td>
+                <td>
+                    <input type="text" id="rate" class="rate form-control" />
+                    <span class="error">Please Provide Valid Rate</span>
+                </td>
+                <td>
+                    <input type="button" name="add" id="add" value="Add" style="width:80px" class="btn btn-success" />
+                </td>
+            </tr>
+        </table>
+        <div id="orderItems">
+            @Html.Partial("_OrderPartial")
+        </div>
+        <div style="padding:10px 0; text-align:right;">
+            <input type="submit" id="submit" value="Place Order" class="btn btn-warning" style="padding:10px 20px" />
+        </div>
+    </div>
+</div>
+<div>
+</div>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+@*<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+<script src="~/Scripts/MyScript.js"></script>
+<style>
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+    tr.error {
+        background-color: brown;
+    }
+
+    .radio-label {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .radio-input {
+        margin-right: 5px;
+    }
+</style>
+
+
